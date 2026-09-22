@@ -1,0 +1,16 @@
+{
+  "name": "elements-the-five-trials",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An original 2D side-scrolling platformer in five elemental trials.",
+  "scripts": {
+    "start": "python -m http.server 5173",
+    "validate": "node tools/validate.mjs",
+    "levels": "node tools/genlevels.mjs",
+    "check": "esbuild src/main.js --bundle --format=esm --outfile=/dev/null && node tools/validate.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Elements: The Five Trials</title>
+<meta name="description" content="An original 2D side-scrolling platformer in five elemental trials." />
+<style>
+  :root { color-scheme: dark; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #0a0910;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    overflow: hidden;
+  }
+  #game {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  canvas { display: block; image-rendering: pixelated; outline: none; }
+  #boot-note {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #6d6a86; font-size: 14px; letter-spacing: 0.1em; pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div id="game"></div>
+<div id="boot-note">LOADING…</div>
+<script src="vendor/phaser.min.js"></script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
