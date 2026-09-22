@@ -95,8 +95,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       if (!reduce) this.stretch();
     }
 
-    // Variable height: releasing jump while rising cuts upward speed.
-    if (this.jumpHeld && !jumpDown && body.velocity.y < 0) {
+    // Fixed jump height: one press, one arc, however long the key is held.
+    // Flip variableJumpHeight in physicsConfig.js for PRD §3 short hops.
+    if (PHYSICS.variableJumpHeight && this.jumpHeld && !jumpDown && body.velocity.y < 0) {
       body.setVelocityY(body.velocity.y * PHYSICS.earlyReleaseCut);
       this.jumpHeld = false;
     }

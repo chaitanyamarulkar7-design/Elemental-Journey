@@ -12,7 +12,7 @@ ammunition, and one signature hazard per element.
 | Action | Primary | Alternate |
 | --- | --- | --- |
 | Move | ← / → | A / D |
-| Jump | ↑ | Space, W (hold for height) |
+| Jump | ↑ | Space, W (every jump is the same height) |
 | Fire | Ctrl | X |
 | Pause | P | Esc |
 
@@ -108,6 +108,12 @@ third-party file in the repository is the vendored Phaser build.
   relics, Time Attack, elemental bullets, gem-cost checkpoints, composed music
   — is deliberately not implemented. `checkpointCost` in `gameConfig.js` is the
   config flag for the gem-cost variant and ships at `0`.
+- §3 specifies a variable-height jump, where releasing early gives a short
+  hop. This build uses a **fixed jump height** instead — one press, one arc,
+  however long the key is held — at the request of the person it was built
+  for. `variableJumpHeight` in `physicsConfig.js` restores the PRD behaviour;
+  the jump still peaks at 158 px, so it clears one layer and never two, and
+  every gap in §3 is unchanged.
 - §11 specifies Vite. This repository drops the build step instead: `index.html`
   loads a vendored Phaser and the game's own ES modules directly, which is what
   makes it deployable to GitHub Pages as-is. The folder layout, the level data

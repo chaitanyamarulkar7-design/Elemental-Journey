@@ -124,7 +124,7 @@ export class HowToPlayScene extends Phaser.Scene {
     const row = (a, b) => `${a.padEnd(22)}${b}`;
     this.add.text(110, 104, [
       row('Move left / right', `${prettyKey(keys.left[0])} ${prettyKey(keys.right[0])}   or  A D`),
-      row('Jump', `${prettyKey(keys.jump[0])}   or  SPACE / W   (hold for height)`),
+      row('Jump', `${prettyKey(keys.jump[0])}   or  SPACE / W   (same height every press)`),
       row('Fire', `${prettyKey(keys.fire[0])}   or  X`),
       row('Pause', 'P   or  ESC'),
     ].join('\n'), BODY_STYLE);

@@ -311,10 +311,17 @@ export class GameScene extends Phaser.Scene {
     this.world.near.tilePositionX = cam.scrollX * 0.5;
   }
 
+  /**
+   * A soft wall at the camera's left edge, so the player can never walk out of
+   * view behind an active checkpoint. It only ever nudges: a correction is
+   * capped at one frame of running, which stops a lagging camera from dragging
+   * the player across the level after a respawn.
+   */
   clampPlayerToCamera() {
     const cam = this.cameras.main;
+    const maxNudge = PHYSICS.runSpeed / 30;
     const minX = Math.max(12, cam.scrollX + 14);
-    if (this.player.x < minX) {
+    if (this.player.x < minX && minX - this.player.x <= maxNudge) {
       this.player.x = minX;
       if (this.player.body.velocity.x < 0) this.player.body.setVelocityX(0);
       this.player.body.updateFromGameObject();
@@ -324,6 +331,12 @@ export class GameScene extends Phaser.Scene {
       this.player.x = maxX;
       this.player.body.updateFromGameObject();
     }
+  }
+
+  /** Put the camera on the player at once, with no lerp to catch up. */
+  snapCameraToPlayer() {
+    const cam = this.cameras.main;
+    cam.centerOn(this.player.x, this.world.worldH / 2);
   }
 
   // ------------------------------------------------------------- hazards
@@ -531,6 +544,7 @@ export class GameScene extends Phaser.Scene {
     this.player.clearTint();
     this.player.body.setAllowGravity(true);
     this.player.respawnAt(S.x, S.y);
+    this.snapCameraToPlayer();
     this.cameras.main.fadeIn(260, 0, 0, 0);
     GameState.set(State.PLAYING);
     InputManager.suppressHeld();
@@ -612,6 +626,7 @@ export class GameScene extends Phaser.Scene {
       const next = this.checkpoints.find(c => !c.lit && c.x > this.player.x) ||
         { x: this.gate.x - 60, y: this.gate.y };
       this.player.respawnAt(next.x, next.y - 4);
+      this.snapCameraToPlayer();
     }
   }
 

@@ -19,6 +19,11 @@ export const PHYSICS = {
   airControl: 0.80,       // fraction of ground acceleration
   gravity: 1800,          // px/s^2
   jumpVelocity: 770,      // px/s  -> peak = v^2 / 2g ~= 165 px
+
+  // Every jump is the same height: how long the key is held changes nothing.
+  // Set variableJumpHeight to true for the PRD §3 behaviour, where releasing
+  // early cuts upward speed and gives a short hop.
+  variableJumpHeight: false,
   earlyReleaseCut: 0.45,  // vy *= this when jump released while rising
   maxFall: 900,           // px/s
   coyoteTime: 0.10,       // s
