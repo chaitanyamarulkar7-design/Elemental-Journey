@@ -5,7 +5,7 @@ A short 2D side-scrolling platformer for desktop browsers, built to the
 Water → Air → Fire), three platform layers, a gem wallet that doubles as
 ammunition, and one signature hazard per element.
 
-**Play it:** open the GitHub Pages link for this repository.
+**▶ Play it: <https://chaitanyamarulkar7-design.github.io/Elemental-Journey/>**
 
 ## Controls
 
